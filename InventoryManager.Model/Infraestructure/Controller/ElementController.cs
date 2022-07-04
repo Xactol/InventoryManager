@@ -14,7 +14,7 @@ namespace InventoryManager.Model.Infraestrucure.Controller
                 case DatabaseType.Sqlite:
                     repository = new SQLiteElementRepository();
                     break;
-                case DatabaseType.SQLServer:
+                case DatabaseType.SqlServer:
                     break;
             }
 
