@@ -9,56 +9,34 @@ namespace InventoryManager
 {
     public class elementController
     {
+        private  elementRepository repository;
 
-
-        public static void initTable()
-        {
-
-            string sql = "CREATE TABLE IF NOT EXISTS element" +
-                " (name VARCHAR(45) PRIMARY KEY," +
-                "  expiryDate SMALLDATETIME," +
-                "  type VARCHAR(25)," +
-                "  price NUMBER(10)," +
-                "  weight NUMBER(10))";
-
-            SQLiteCommand command = new SQLiteCommand(sql, constants.conexion);
-            command.ExecuteNonQuery();
-            fillTable();
-
+        public void init() {
+            repository = new elementRepository();   
+            repository.init();
         }
 
-
-        public static void fillTable()
-        {
-            string sql = "insert into element (name,expiryDate, type, price, weight) " +
-                         "values ('Computer','2035-12-12 22:00:00', 'Technology', 255, 120.56)";
-            SQLiteCommand command = new SQLiteCommand(sql, constants.conexion);
-            command.ExecuteNonQuery();
-            sql = "insert into element (name,expiryDate, type, price, weight) " +
-                  "values ('Mouse','2030-10-20 20:12:45', 'I/O Technology', 15, 0.80 )";
-            command = new SQLiteCommand(sql, constants.conexion);
-            command.ExecuteNonQuery();
+        public int count() {
+            return repository.getNumElements();
+        }
+        public  IEnumerable<element> getAll(){
+            return repository.getAll();
         }
 
-        public static IEnumerable<element> getAll()
-        {
+        public element getByName(String name){
+            return repository.findByName(name);
+        }
 
-            SQLiteCommand command = new SQLiteCommand("SELECT * FROM element", constants.conexion);
-            SQLiteDataReader result = command.ExecuteReader();
-            IEnumerable<element> employees;
-            var tempEmployees = new List<element>();
-            while (result.Read())
-            {
-                tempEmployees.Add(new element(Convert.ToString(result[0])
-                                                , Convert.ToDateTime(result[1])
-                                                , Convert.ToString(result[2])
-                                                , Convert.ToDouble(result[3])
-                                                , Convert.ToDouble(result[4])
-                                                ));
-            }
-            employees = tempEmployees;
-            return employees;
+        public bool deleteByName(String name) {
+            return repository.remove(name);
+        }
 
+        public element addElement(String name, DateTime expiryDate, string type, double price, double weight) {
+            var temp = new element(name, expiryDate, type, price, weight);
+            if (repository.save(temp)) 
+                return temp;
+            
+            throw new Exception ("The element can´t be added to the database");
         }
 
 

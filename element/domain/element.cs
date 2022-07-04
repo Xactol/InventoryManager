@@ -9,10 +9,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Data.SQLite;
+using System.Collections;
 
 namespace InventoryManager
 {
-    public class element
+    public class element:IEnumerable<element>
     {
         public string name { get; set; }
         public DateTime expiryDate { get; set; }
@@ -35,5 +36,21 @@ namespace InventoryManager
             this.weight = weight;
         }
 
+        public override String ToString()
+        {
+            if (name == null) return "No object";
+            return "Name: "+name +" Expiry date: " + expiryDate + " Type: "+ type + " Price: " + price + " Weight: " + weight;
+
+        }
+
+        public IEnumerator<element> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
