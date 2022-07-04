@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using InventoryManager.Model.Infraestrucure.Controller;
-using InventoryManager.Model;
+using InventoryManager.Model.Domain;
 
 namespace InventoryManager
 {
@@ -26,7 +26,7 @@ namespace InventoryManager
             bool running = true;
             
             ElementController controller = new();
-            controller.init();
+            controller.init(DatabaseType.Sqlite);
 
             while (running)
             {
