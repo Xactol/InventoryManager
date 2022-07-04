@@ -8,12 +8,11 @@ namespace InventoryManager
 {
     public class alerts {
         public string mensaje { get; set; }
-        public alerts () {
 
-             mensaje = "the number of elements in database is per";
+        public alerts()
+        {
+
+            mensaje = "the number of elements in database is per";
         }
-
-
-    
     }
 }

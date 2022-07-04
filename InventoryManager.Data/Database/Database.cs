@@ -5,8 +5,13 @@ namespace InventoryManager.Data
 {
     public class Database
     {
-        public Database() { }
-        public static void initDDBB() {
+        public Database()
+        {
+
+        }
+
+        public static void initDDBB()
+        {
             SQLiteConnection.CreateFile("ddbbInventory.sqlite");
 
             constants.conexion = new SQLiteConnection("Data Source=ddbbInventory.sqlite;Version=3;");
@@ -14,6 +19,7 @@ namespace InventoryManager.Data
 
             Console.WriteLine(" Database has been opened successfull ");
         }
+
         public static void closeDDBB()
         {
             constants.conexion.Close();
