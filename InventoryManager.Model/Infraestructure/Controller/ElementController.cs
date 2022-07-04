@@ -7,7 +7,8 @@ namespace InventoryManager.Model.Infraestrucure.Controller
     {
         private IBaseRepository repository;
 
-        public void init(DatabaseType DBType) {
+        public void init(DatabaseType DBType)
+        {
             switch (DBType)
             {
                 case DatabaseType.Sqlite:
@@ -20,25 +21,31 @@ namespace InventoryManager.Model.Infraestrucure.Controller
             repository.init();
         }
 
-        public int count() {
+        public int count()
+        {
             return repository.getNumElements();
         }
-        public  IEnumerable<Element> getAll(){
+
+        public IEnumerable<Element> getAll()
+        {
             return repository.getAll();
         }
 
-        public Element getByName(String name){
+        public Element getByName(String name)
+        {
             return repository.findByName(name);
         }
 
-        public bool deleteByName(String name) {
+        public bool deleteByName(String name)
+        {
             return repository.remove(name);
         }
 
-        public Element addElement(String name, DateTime expiryDate, string type, double price, double weight) {
+        public Element addElement(String name, DateTime expiryDate, string type, double price, double weight)
+        {
             var temp = new Element(name, expiryDate, type, price, weight);
 
-            if (repository.save(temp)) 
+            if (repository.save(temp))
                 return temp;
 
             return null;
