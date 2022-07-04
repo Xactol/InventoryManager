@@ -24,8 +24,7 @@ namespace InventoryManager
                                     "Press l to get a list of all objects \n"
                                     ;
             bool running = true;
-
-            Database.initDDBB();
+            
             ElementController controller = new();
             controller.init();
 
@@ -99,7 +98,7 @@ namespace InventoryManager
 
             }
 
-            Database.closeDDBB();
+            controller.count();
         }
     }
 }
