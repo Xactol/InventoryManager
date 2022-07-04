@@ -13,7 +13,7 @@ using System.Collections;
 
 namespace InventoryManager.Model.Domain
 {
-    public class Element:IEnumerable<Element>
+    public class Element : IEnumerable<Element>
     {
         public string name { get; set; }
         public DateTime expiryDate { get; set; }

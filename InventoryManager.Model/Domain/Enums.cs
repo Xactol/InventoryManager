@@ -10,6 +10,6 @@ namespace InventoryManager.Model.Domain
     public enum DatabaseType 
     { 
         Sqlite,
-        SQLServer
+        SqlServer
     }
 }
