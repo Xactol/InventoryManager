@@ -3,12 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager", "InventoryManager.csproj", "{C5EAB09E-763E-421A-8964-C612DF17D4FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManager.ConsoleApp", "InventoryManager.ConsoleApp.csproj", "{C5EAB09E-763E-421A-8964-C612DF17D4FE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{14BB5531-7587-4A52-9D11-6C6FF40D8EC0}"
-	ProjectSection(SolutionItems) = preProject
-		sqlite3.dll = sqlite3.dll
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.Model", "..\InventoryManager.Model\InventoryManager.Model.csproj", "{3E21C742-E743-469D-B6C2-2536131A5C3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +17,10 @@ Global
 		{C5EAB09E-763E-421A-8964-C612DF17D4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5EAB09E-763E-421A-8964-C612DF17D4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5EAB09E-763E-421A-8964-C612DF17D4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E21C742-E743-469D-B6C2-2536131A5C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E21C742-E743-469D-B6C2-2536131A5C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E21C742-E743-469D-B6C2-2536131A5C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E21C742-E743-469D-B6C2-2536131A5C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
