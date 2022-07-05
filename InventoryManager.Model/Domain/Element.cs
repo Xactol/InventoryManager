@@ -11,9 +11,9 @@ using System.Linq;
 using System.Data.SQLite;
 using System.Collections;
 
-namespace InventoryManager.element.domain
+namespace InventoryManager.Model.Domain
 {
-    public class element : IEnumerable<element>
+    public class Element : IEnumerable<Element>
     {
         public string name { get; set; }
         public DateTime expiryDate { get; set; }
@@ -21,13 +21,13 @@ namespace InventoryManager.element.domain
         public double price { get; set; }
         public double weight { get; set; }
 
-        public element(string name, string type)
+        public Element(string name, string type)
         {
             this.name = name;
             this.type = type;
         }
 
-        public element(string name, DateTime expiryDate, string type, double price, double weight)
+        public Element(string name, DateTime expiryDate, string type, double price, double weight)
         {
             this.name = name;
             this.expiryDate = expiryDate;
@@ -36,14 +36,14 @@ namespace InventoryManager.element.domain
             this.weight = weight;
         }
 
-        public override string ToString()
+        public override String ToString()
         {
             if (name == null) return "No object";
-            return "Name: " + name + " Expiry date: " + expiryDate + " Type: " + type + " Price: " + price + " Weight: " + weight;
 
+            return "Name: " + name + " Expiry date: " + expiryDate + " Type: " + type + " Price: " + price + " Weight: " + weight;
         }
 
-        public IEnumerator<element> GetEnumerator()
+        public IEnumerator<Element> GetEnumerator()
         {
             throw new NotImplementedException();
         }

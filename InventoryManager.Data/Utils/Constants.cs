@@ -5,13 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManager.utils
+namespace InventoryManager.Data
 {
-
-    internal static class constants
+    public static class constants
     {
         public static SQLiteConnection conexion;
-
-
     }
 }
