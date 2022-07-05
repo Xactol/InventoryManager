@@ -9,19 +9,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Data.SQLite;
+using InventoryManager.utils;
+using InventoryManager.element.domain;
 
-namespace InventoryManager
+namespace InventoryManager.element.infraestructure.repository
 {
     public class elementRepository
     {
 
-        public void init() {
+        public void init()
+        {
             initTable();
             fillTable();
         }
-    
-        public bool save(element entity) {
-            String sql = "insert into element (name,expiryDate, type, price, weight) " +
+
+        public bool save(domain.element entity)
+        {
+            string sql = "insert into element (name,expiryDate, type, price, weight) " +
                          "values (@name, @expiryDate, @type, @price, @weight)";
             SQLiteCommand command = new SQLiteCommand(sql, constants.conexion);
             command.Parameters.AddWithValue("@name", entity.name);
@@ -33,27 +37,31 @@ namespace InventoryManager
         }
 
 
-        public IEnumerable<element> getAll() {
+        public IEnumerable<domain.element> getAll()
+        {
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM element", constants.conexion);
             SQLiteDataReader result = command.ExecuteReader();
-            var tempEmployees = new List<element>();
+            var tempEmployees = new List<domain.element>();
             return sqlitecommandToEntityList(result);
         }
 
 
-        public int getNumElements() {
+        public int getNumElements()
+        {
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM element", constants.conexion);
             SQLiteDataReader result = command.ExecuteReader();
-            var tempEmployees = new List<element>();
+            var tempEmployees = new List<domain.element>();
             return sqlitecommandToEntityList(result).Count();
         }
 
-        public bool remove(String name) {
+        public bool remove(string name)
+        {
             try
             {
                 findByName(name);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new KeyNotFoundException("No element with this name has been found");
             }
             SQLiteCommand command = new SQLiteCommand("DELETE FROM element WHERE name =@name", constants.conexion);
@@ -62,19 +70,21 @@ namespace InventoryManager
             return true;
         }
 
-        public element findByName(String name) {
+        public domain.element findByName(string name)
+        {
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM element WHERE name = @name", constants.conexion);
-            command.Parameters.AddWithValue("@name",name);
+            command.Parameters.AddWithValue("@name", name);
             Console.WriteLine(command.CommandText);
             SQLiteDataReader result = command.ExecuteReader();
             try
             {
                 return sqlitecommandToEntity(result);
             }
-            catch (InvalidOperationException ex) {
-                throw new KeyNotFoundException("No element found with this name: "+ name);
+            catch (InvalidOperationException ex)
+            {
+                throw new KeyNotFoundException("No element found with this name: " + name);
             }
-            
+
             throw new ApplicationException("An exception ocurred when obtaining fields from database");
         }
 
@@ -96,37 +106,38 @@ namespace InventoryManager
 
         public void fillTable()
         {
-            save(new element("Computer", new DateTime(2035, 12 ,12, 22,00,00), "Technology", 255, 120.56));
-            save(new element("Mouse", new DateTime(2020, 10, 15, 13, 15, 00), "I/O Technology", 24, 0.34));
-        
+            save(new domain.element("Computer", new DateTime(2035, 12, 12, 22, 00, 00), "Technology", 255, 120.56));
+            save(new domain.element("Mouse", new DateTime(2020, 10, 15, 13, 15, 00), "I/O Technology", 24, 0.34));
+
         }
 
 
-        private element sqlitecommandToEntity(SQLiteDataReader reader) {
-                while (reader.Read())
-                {
-                    return new element(Convert.ToString(reader[0])
-                                                , Convert.ToDateTime(reader[1])
-                                                , Convert.ToString(reader[2])
-                                                , Convert.ToDouble(reader[3])
-                                                , Convert.ToDouble(reader[4])
-                                                );
-                }
-                throw new NullReferenceException("The datareader is null or unavaible");
-        }
-
-        private IEnumerable<element> sqlitecommandToEntityList(SQLiteDataReader reader)
+        private domain.element sqlitecommandToEntity(SQLiteDataReader reader)
         {
-            var temp = new List<element>();
             while (reader.Read())
             {
-                temp.Add(new element(Convert.ToString(reader[0])
+                return new domain.element(Convert.ToString(reader[0])
+                                            , Convert.ToDateTime(reader[1])
+                                            , Convert.ToString(reader[2])
+                                            , Convert.ToDouble(reader[3])
+                                            , Convert.ToDouble(reader[4])
+                                            );
+            }
+            throw new NullReferenceException("The datareader is null or unavaible");
+        }
+
+        private IEnumerable<domain.element> sqlitecommandToEntityList(SQLiteDataReader reader)
+        {
+            var temp = new List<domain.element>();
+            while (reader.Read())
+            {
+                temp.Add(new domain.element(Convert.ToString(reader[0])
                                             , Convert.ToDateTime(reader[1])
                                             , Convert.ToString(reader[2])
                                             , Convert.ToDouble(reader[3])
                                             , Convert.ToDouble(reader[4])
                                             )
-                        ); 
+                        );
             }
             return temp;
             throw new NullReferenceException("The datareader is null or unavaible");

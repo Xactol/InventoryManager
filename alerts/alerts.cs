@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManager
+namespace InventoryManager.alerts
 {
-    public class alerts {
+    public class alerts
+    {
         public string mensaje { get; set; }
-        public alerts () {
+        public alerts()
+        {
 
-             mensaje = "the number of elements in database is per";
+            mensaje = "the number of elements in database is per";
         }
 
 
-    
+
     }
 }

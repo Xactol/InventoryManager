@@ -1,14 +1,13 @@
 ﻿using System.Data.SQLite;
 using System.Collections.Generic;
+using InventoryManager.utils;
 
-
-
-namespace InventoryManager
+namespace InventoryManager.database
 {
     public class database
     {
 
-        
+
 
 
         public database() { }
@@ -17,7 +16,8 @@ namespace InventoryManager
 
 
 
-        public static void initDDBB() {
+        public static void initDDBB()
+        {
             SQLiteConnection.CreateFile("ddbbInventory.sqlite");
 
             constants.conexion = new SQLiteConnection("Data Source=ddbbInventory.sqlite;Version=3;");

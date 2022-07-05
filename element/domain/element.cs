@@ -11,9 +11,9 @@ using System.Linq;
 using System.Data.SQLite;
 using System.Collections;
 
-namespace InventoryManager
+namespace InventoryManager.element.domain
 {
-    public class element:IEnumerable<element>
+    public class element : IEnumerable<element>
     {
         public string name { get; set; }
         public DateTime expiryDate { get; set; }
@@ -36,10 +36,10 @@ namespace InventoryManager
             this.weight = weight;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             if (name == null) return "No object";
-            return "Name: "+name +" Expiry date: " + expiryDate + " Type: "+ type + " Price: " + price + " Weight: " + weight;
+            return "Name: " + name + " Expiry date: " + expiryDate + " Type: " + type + " Price: " + price + " Weight: " + weight;
 
         }
 

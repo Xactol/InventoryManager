@@ -1,42 +1,49 @@
-﻿using System;
+﻿using InventoryManager.element.infraestructure.repository;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManager
+namespace InventoryManager.element.infraestructure.controller
 {
     public class elementController
     {
-        private  elementRepository repository;
+        private elementRepository repository;
 
-        public void init() {
-            repository = new elementRepository();   
+        public void init()
+        {
+            repository = new elementRepository();
             repository.init();
         }
 
-        public int count() {
+        public int count()
+        {
             return repository.getNumElements();
         }
-        public  IEnumerable<element> getAll(){
+        public IEnumerable<domain.element> getAll()
+        {
             return repository.getAll();
         }
 
-        public element getByName(String name){
+        public domain.element getByName(string name)
+        {
             return repository.findByName(name);
         }
 
-        public bool deleteByName(String name) {
+        public bool deleteByName(string name)
+        {
             return repository.remove(name);
         }
 
-        public element addElement(String name, DateTime expiryDate, string type, double price, double weight) {
-            var temp = new element(name, expiryDate, type, price, weight);
-            if (repository.save(temp)) 
+        public domain.element addElement(string name, DateTime expiryDate, string type, double price, double weight)
+        {
+            var temp = new domain.element(name, expiryDate, type, price, weight);
+            if (repository.save(temp))
                 return temp;
-            
-            throw new Exception ("The element can´t be added to the database");
+
+            throw new Exception("The element can´t be added to the database");
         }
 
 

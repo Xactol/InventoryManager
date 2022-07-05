@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using InventoryManager.element.infraestructure.controller;
+
 
 namespace InventoryManager
 {
@@ -24,7 +26,7 @@ namespace InventoryManager
                                     ;
             bool running = true;
 
-            database.initDDBB();
+            database.database.initDDBB();
             elementController controller = new();
             controller.init();
             while (running) {
@@ -92,7 +94,7 @@ namespace InventoryManager
                 
             }
 
-                database.closeDDBB();
+                database.database.closeDDBB();
 
 
         }
